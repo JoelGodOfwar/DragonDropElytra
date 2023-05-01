@@ -1,0 +1,15 @@
+<versions>
+  <release>
+    <version>1.13_1.0.5</version>
+    <notes>D1	
+D2	Changed broken elytra dropping.
+D3	Changed MC version checking to get the version string once. Fixed the error.
+D4	Fixed an issue with broken elytra drops requiring normal elytra dropping.
+D5	Fixed an error where DDE did not recognize 1.18 as a valid version.</notes>
+  </release>
+  <developer>
+    <version>1.13_1.0.6.D2</version>
+    <notes>D1	Minor changes to UpdateChecker Notifications.
+D2	Added config option to send a console command on Dragon death. Switched to i18n language files.</notes>
+  </developer>
+</versions>
