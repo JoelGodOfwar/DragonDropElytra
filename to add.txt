@@ -1,0 +1,4 @@
+DaragonDropElytra
+Feature request:
+- If the killer of the enderdragon has never defeated the dragon before (eg. does not have the "free the end" advancement), then drop the egg.
+

@@ -1,0 +1,18 @@
+name: DragonDropElytra
+main: com.github.joelgodofwar.dde.DragonDropElytra
+version: 1.13_1.0.6
+author: JoelGodOfWar/JoelYahwehOfWar
+api-version: 1.13
+
+commands:
+  dde:
+    description: Shows DragonDropElytra help.
+    usage: /<command>
+
+permissions:
+  dde.op:
+    description: Allows the player to reload configs, and toggle debug.
+    default: op
+  dde.showUpdateAvailable:
+    description: Shows player that there is a version update.
+    default: op
