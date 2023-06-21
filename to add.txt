@@ -1,0 +1,9 @@
+DaragonDropElytra
+
+Plan to add:
+  Folia Support.
+    During testing on a Folia server DDE did not detect the Dragon's death and did not drop the elytra, or any other items.
+
+Feature request:
+- If the killer of the enderdragon has never defeated the dragon before (eg. does not have the "free the end" advancement), then drop the egg.
+

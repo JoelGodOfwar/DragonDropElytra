@@ -1,0 +1,76 @@
+# DO NOT CHANGE VERSION
+version: 1.0.12
+# change to false to stop auto-update-check
+auto_update_check: true
+# set to true before sending a log to developer
+debug: false
+# Set the language to use, en_US, nl_NL, lol_US, fr_FR, de_DE, zh_CN, cs-CZ, pt_BR, es_ES
+lang: en_US
+# Should DragonDropElytra use it's full name or DDE in console messages?
+longpluginname: true
+# 
+# World settings - World Names are Case Sensitive, World does not equal world
+world:
+# list of worlds DDE will work in. Blanks means all except for blacklisted worlds
+# Example (world, world_nether, world_the_end) will drop heads
+  whitelist:
+# list of worlds DDE will NOT work in.
+# Example (world_Dungeon) will NOT drop heads
+  blacklist:
+# 
+# set location to drop elytra, in the end
+droploc: 0, 62, 4
+# 
+do_what:
+# should dde drop the elytra on the ground at droploc?
+  drop_on_ground: false
+# Should dde drop the elytra naturally?
+  drop_naturally: false
+# should dde place the elytra in a chest at droploc?
+  place_in_chest: false
+# should dde give the elytra to the killing player?
+  give_to_player: true
+# should dde prevent the dragon egg from spawning?
+  prevent_dragon_egg_spawn: false
+# the delay before the repeating task starts
+  prevent_dragon_egg_spawn_delay_init: 5
+# the delay between the repeating task repeating.
+  prevent_dragon_egg_spawn_delay_run: 5
+# Should DDE Send console command?
+  send_console_command: false
+# What command should DDE send after the EnderDragon is killed?
+# Do not include /, console commands are like (say The EnderDragon is dead!)
+  console_command: say The EnderDragon has been killed!
+# 
+drop:
+# should dde drop an elytra?
+  elytra: true
+# should dde drop a broken elytra?
+  brokenelytra: false
+# should dde drop a dragon head?
+  dragonhead: false
+# should dde drop a dragon egg?
+  dragonegg: false
+# 
+chance:
+  elytra:
+# Should the drop be a random chance?
+  chancepercentdrop: false
+# randomdrop must be true for chancepercent to be used. 
+# chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
+# 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
+  chancepercent: 0.25
+  dragonhead:
+# Should the drop be a random chance?
+  chancepercentdrop: false
+# randomdrop must be true for chancepercent to be used. 
+# chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
+# 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
+  chancepercent: 0.25
+  dragonegg:
+# Should the drop be a random chance?
+  chancepercentdrop: false
+# randomdrop must be true for chancepercent to be used. 
+# chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
+# 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
+  chancepercent: 0.25
