@@ -7,9 +7,9 @@ D3	UpdateChecker reworked, added 20 Languages, added config for longname in cons
     <link>https://www.spigotmc.org/resources/dragondropelytra2.71235/history</link>
   </release>
   <developer>
-    <version>1.13_1.0.7.D1</version>
+    <version>1.13_1.0.7.D2</version>
     <notes>D1	Removed extra period in key for toggledebug command, that caused an NPE. Fixed chance configs.
-</notes>
+D2	Added missing language keys/values for /dde toggledebug, command.</notes>
     <link>https://discord.com/channels/654087250665144321/654444517570773014</link>
   </developer>
 </versions>
