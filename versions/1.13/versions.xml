@@ -1,9 +1,10 @@
 <versions>
   <release>
-    <version>1.13_1.0.6</version>
-    <notes>D1	Minor changes to UpdateChecker Notifications.
-D2	Added config option to send a console command on Dragon death. Switched to i18n language files.
-D3	UpdateChecker reworked, added 20 Languages, added config for longname in console logs.</notes>
+    <version>1.13_1.0.7</version>
+    <notes>D1	Removed extra period in key for toggledebug command, that caused an NPE. Fixed chance configs.
+D2	Added missing language keys/values for /dde toggledebug, command.
+D3	Added the other two missing keys.
+D4	Hopefully fixing Folia exception with ToggleDebug.</notes>
     <link>https://www.spigotmc.org/resources/dragondropelytra2.71235/history</link>
   </release>
   <developer>
