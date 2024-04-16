@@ -1,13 +1,15 @@
 # DO NOT CHANGE VERSION
-version: 1.0.12
-# change to false to stop auto-update-check
-auto_update_check: true
-# set to true before sending a log to developer
-debug: false
-# Set the language to use, en_US, nl_NL, lol_US, fr_FR, de_DE, zh_CN, cs-CZ, pt_BR, es_ES
-lang: en_US
-# Should DragonDropElytra use it's full name or DDE in console messages?
-longpluginname: true
+version: 1.0.14
+plugin_settings:
+  # change to false to stop auto-update-check
+  auto_update_check: true
+  # set to true before sending a log about an issue. logs trace data required to pinpoint where errors are.
+  debug: false
+  # čeština (cs_CZ), Deutsch (de_DE), English (en_US), Español (es_ES), Español (es_MX), Français (fr_FR), Italiano (it_IT), Magyar (hu_HU), 日本語 (ja_JP), 한국어 (ko_KR), Lolcat (lol_US)
+  # Melayu (my_MY), Nederlands (nl_NL), Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SV), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW)
+  lang: en_US
+  # Enables fancy ANSI colors in console. (Disable if you're getting weird characters in the console)
+  colorful_console: true
 # 
 # World settings - World Names are Case Sensitive, World does not equal world
 world:
@@ -55,22 +57,22 @@ drop:
 chance:
   elytra:
 # Should the drop be a random chance?
-  chancepercentdrop: false
+    chancepercentdrop: false
 # randomdrop must be true for chancepercent to be used. 
 # chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
 # 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
-  chancepercent: 0.25
+    chancepercent: 0.25
   dragonhead:
 # Should the drop be a random chance?
-  chancepercentdrop: false
+    chancepercentdrop: false
 # randomdrop must be true for chancepercent to be used. 
 # chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
 # 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
-  chancepercent: 0.25
+    chancepercent: 0.25
   dragonegg:
 # Should the drop be a random chance?
-  chancepercentdrop: false
+    chancepercentdrop: false
 # randomdrop must be true for chancepercent to be used. 
 # chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
 # 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
-  chancepercent: 0.25
+    chancepercent: 0.25
