@@ -12,7 +12,7 @@ import com.github.joelgodofwar.dde.DragonDropElytra;
 public class ConfigAPI  {
 
 	public final static Logger logger = Logger.getLogger("Minecraft");
-	
+
 	public static  void CheckForConfig(Plugin plugin){
 		try{
 			if(!plugin.getDataFolder().exists()){
@@ -27,42 +27,42 @@ public class ConfigAPI  {
 				log("config.yml not found, creating!");
 				plugin.saveDefaultConfig();
 				FileConfiguration config = plugin.getConfig();
-				
+
 				config.options().copyDefaults(true);
 				plugin.saveConfig();
 			}
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
-	
-	public static void Reloadconfig(Plugin plugin){
+
+	public void Reloadconfig(DragonDropElytra plugin){
 		// Load config.
 		FileConfiguration config = plugin.getConfig();
 		String daString = config.getString("debug").replace("'", "") + ",";
-		
+
 		if(daString.contains("true")){
-			DragonDropElytra.debug = true;
+			plugin.debug = true;
 		}else{
-			DragonDropElytra.debug = false;
+			plugin.debug = false;
 		}
 		String daString2 = config.getString("auto_update_check").replace("'", "") + ",";
 		if(daString2.contains("true")){
-			DragonDropElytra.UpdateCheck = true;
+			plugin.UpdateCheck = true;
 		}else{
-			DragonDropElytra.UpdateCheck = false;
+			plugin.UpdateCheck = false;
 		}
-		
-		if(DragonDropElytra.debug){log("UpdateCheck = " + DragonDropElytra.UpdateCheck);} //TODO: Logger
+
+		if(plugin.debug){log("UpdateCheck = " + plugin.UpdateCheck);} //TODO: Logger
 	}
-	
+
 	public static String GetConfigStr(Plugin plugin, String string){
 		FileConfiguration config = plugin.getConfig();
 		String daString = config.getString(string).replace("'", "") + ",";
 		return daString;
-		
+
 	}
-	
+
 	public static boolean GetConfigBool(Plugin plugin, String string){
 		FileConfiguration config = plugin.getConfig();
 		String daString = config.getString(string).replace("'", "") + ",";
@@ -72,7 +72,7 @@ public class ConfigAPI  {
 			return false;
 		}
 	}
-	
+
 	public static  void log(String dalog){
 		Bukkit.getLogger().info(dalog);
 	}
