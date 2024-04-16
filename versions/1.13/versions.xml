@@ -1,10 +1,11 @@
 <versions>
   <release>
-    <version>1.13_1.0.7</version>
-    <notes>D1	Removed extra period in key for toggledebug command, that caused an NPE. Fixed chance configs.
-D2	Added missing language keys/values for /dde toggledebug, command.
-D3	Added the other two missing keys.
-D4	Hopefully fixing Folia exception with ToggleDebug.</notes>
+    <version>1.13_1.0.8</version>
+    <notes>D1 Added new color fixer for console.
+D2 Added some error reports
+changed longpluginname to colorful_console
+config version changed to 1.0.14
+D3 Removed Birthday Message code. Please accept my apologies.</notes>
     <link>https://www.spigotmc.org/resources/dragondropelytra2.71235/history</link>
   </release>
   <developer>
