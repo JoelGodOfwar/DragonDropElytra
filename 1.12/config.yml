@@ -1,0 +1,7 @@
+# change to false to stop auto-update-check
+auto-update-check: default
+debug: default
+droploc: default
+drop-on-ground: default
+place-in-chest: default
+give-to-player: default

@@ -75,4 +75,82 @@ chance:
 # randomdrop must be true for chancepercent to be used. 
 # chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
 # 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
+=======
+# DO NOT CHANGE VERSION
+version: 1.0.14
+plugin_settings:
+  # change to false to stop auto-update-check
+  auto_update_check: true
+  # set to true before sending a log about an issue. logs trace data required to pinpoint where errors are.
+  debug: false
+  # čeština (cs_CZ), Deutsch (de_DE), English (en_US), Español (es_ES), Español (es_MX), Français (fr_FR), Italiano (it_IT), Magyar (hu_HU), 日本語 (ja_JP), 한국어 (ko_KR), Lolcat (lol_US)
+  # Melayu (my_MY), Nederlands (nl_NL), Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SV), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW)
+  lang: en_US
+  # Enables fancy ANSI colors in console. (Disable if you're getting weird characters in the console)
+  colorful_console: true
+# 
+# World settings - World Names are Case Sensitive, World does not equal world
+world:
+# list of worlds DDE will work in. Blanks means all except for blacklisted worlds
+# Example (world, world_nether, world_the_end) will drop heads
+  whitelist:
+# list of worlds DDE will NOT work in.
+# Example (world_Dungeon) will NOT drop heads
+  blacklist:
+# 
+# set location to drop elytra, in the end
+droploc: 0, 62, 4
+# 
+do_what:
+# should dde drop the elytra on the ground at droploc?
+  drop_on_ground: false
+# Should dde drop the elytra naturally?
+  drop_naturally: false
+# should dde place the elytra in a chest at droploc?
+  place_in_chest: false
+# should dde give the elytra to the killing player?
+  give_to_player: true
+# should dde prevent the dragon egg from spawning?
+  prevent_dragon_egg_spawn: false
+# the delay before the repeating task starts
+  prevent_dragon_egg_spawn_delay_init: 5
+# the delay between the repeating task repeating.
+  prevent_dragon_egg_spawn_delay_run: 5
+# Should DDE Send console command?
+  send_console_command: false
+# What command should DDE send after the EnderDragon is killed?
+# Do not include /, console commands are like (say The EnderDragon is dead!)
+  console_command: say The EnderDragon has been killed!
+# 
+drop:
+# should dde drop an elytra?
+  elytra: true
+# should dde drop a broken elytra?
+  brokenelytra: false
+# should dde drop a dragon head?
+  dragonhead: false
+# should dde drop a dragon egg?
+  dragonegg: false
+# 
+chance:
+  elytra:
+# Should the drop be a random chance?
+    chancepercentdrop: false
+# randomdrop must be true for chancepercent to be used. 
+# chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
+# 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
+    chancepercent: 0.25
+  dragonhead:
+# Should the drop be a random chance?
+    chancepercentdrop: false
+# randomdrop must be true for chancepercent to be used. 
+# chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
+# 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
+    chancepercent: 0.25
+  dragonegg:
+# Should the drop be a random chance?
+    chancepercentdrop: false
+# randomdrop must be true for chancepercent to be used. 
+# chance percent, must be over 0.00 and less than 0.99 (IE - 0.01-0.98)
+# 0.98 = 98%, 0.75 = 75%, 0.50 = 50%, 0.25 = 25%, 0.01 = 1%
     chancepercent: 0.25

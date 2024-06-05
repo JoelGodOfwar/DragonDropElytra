@@ -1,0 +1,15 @@
+<versions>
+  <release>
+    <version>1.13_1.0.6</version>
+    <notes>D1	Minor changes to UpdateChecker Notifications.
+D2	Added config option to send a console command on Dragon death. Switched to i18n language files.
+D3	UpdateChecker reworked, added 20 Languages, added config for longname in console logs.</notes>
+    <link>https://www.spigotmc.org/resources/dragondropelytra2.71235/history</link>
+  </release>
+  <developer>
+    <version>1.13_1.0.6.D2</version>
+    <notes>D1	Minor changes to UpdateChecker Notifications.
+D2	Added config option to send a console command on Dragon death. Switched to i18n language files.</notes>
+    <link>https://discord.com/channels/654087250665144321/654444517570773014</link>
+  </developer>
+</versions>
