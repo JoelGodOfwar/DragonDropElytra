@@ -50,7 +50,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.github.joelgodofwar.dde.bstats.bukkit.Metrics;
 import com.github.joelgodofwar.dde.bstats.charts.AdvancedPie;
 import com.github.joelgodofwar.dde.bstats.charts.SimplePie;
-import com.github.joelgodofwar.dde.common.MinecraftVersion;
 import com.github.joelgodofwar.dde.common.PluginLibrary;
 import com.github.joelgodofwar.dde.common.PluginLogger;
 import com.github.joelgodofwar.dde.common.error.DetailedErrorReporter;
@@ -58,6 +57,7 @@ import com.github.joelgodofwar.dde.common.error.Report;
 import com.github.joelgodofwar.dde.i18n.Translator;
 import com.github.joelgodofwar.dde.util.StrUtils;
 import com.github.joelgodofwar.dde.util.Utils;
+import com.github.joelgodofwar.dde.util.Version;
 import com.github.joelgodofwar.dde.util.VersionChecker;
 import com.github.joelgodofwar.dde.util.YmlConfiguration;
 
@@ -108,7 +108,7 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 		LOGGER.log(ChatColor.GREEN + " v" + THIS_VERSION + ChatColor.RESET + " Loading...");
 		LOGGER.log("Server Version: " + getServer().getVersion().toString());
 
-		MinecraftVersion version = this.verifyMinecraftVersion();
+		Version version = this.verifyMinecraftVersion();
 		/** DEV check **/
 		File jarfile = this.getFile().getAbsoluteFile();
 		if(jarfile.toString().contains("-DEV")){
@@ -1051,12 +1051,12 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 	}
 
 	// Used to check Minecraft version
-	private MinecraftVersion verifyMinecraftVersion() {
-		MinecraftVersion minimum = new MinecraftVersion(PluginLibrary.MINIMUM_MINECRAFT_VERSION);
-		MinecraftVersion maximum = new MinecraftVersion(PluginLibrary.MAXIMUM_MINECRAFT_VERSION);
+	private Version verifyMinecraftVersion() {
+		Version minimum = new Version(PluginLibrary.MINIMUM_MINECRAFT_VERSION);
+		Version maximum = new Version(PluginLibrary.MAXIMUM_MINECRAFT_VERSION);
 
 		try {
-			MinecraftVersion current = new MinecraftVersion(this.getServer());
+			Version current = new Version(this.getServer());
 
 			// We'll just warn the user for now
 			if (current.compareTo(minimum) < 0) {
@@ -1068,7 +1068,7 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 
 			return current;
 		} catch (Exception exception) {
-			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_PARSE_MINECRAFT_VERSION).error(exception).messageParam(maximum));
+			reporter.reportWarning(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_PARSE_MINECRAFT_VERSION).error(exception).messageParam(maximum));
 
 			// Unknown version - just assume it is the latest
 			return maximum;
