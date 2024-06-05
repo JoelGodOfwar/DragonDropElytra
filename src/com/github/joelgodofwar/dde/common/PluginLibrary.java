@@ -47,7 +47,7 @@ public class PluginLibrary {
 	}
 
 	public static final ReportType REPORT_CANNOT_DELETE_CONFIG = new ReportType("Cannot delete old DragonDropElytra configuration.");
-
+	public static final ReportType REPORT_CANNOT_COPY_FILE = new ReportType("Cannot copy file.");
 	public static final ReportType REPORT_METRICS_LOAD_ERROR = new ReportType("Cannot load bStats Metrics.");
 
 	public static final ReportType REPORT_PLUGIN_LOAD_ERROR = new ReportType("Cannot load DragonDropElytra.");
@@ -64,6 +64,9 @@ public class PluginLibrary {
 	//public static final ReportType REPORT_CANNOT_CREATE_TIMEOUT_TASK = new ReportType("Unable to create packet timeout task.");
 	public static final ReportType REPORT_CANNOT_UPDATE_PLUGIN = new ReportType("Cannot perform automatic updates.");
 
+	public static final ReportType ERROR_PARSING_PLACE_IN_CHEST = new ReportType("Exception trying to place items in chest.");
+	public static final ReportType ERROR_PARSING_COMMAND = new ReportType("Error parsing Command.");
+	public static final ReportType REPORT_TAB_COMPLETE_ERROR = new ReportType("Error parsing Tab Complete.");
 	public static final ReportType ERROR_PARSING_DRAGON_DEATH = new ReportType("Error parsing dragon death.");
 	public static final ReportType ERROR_BLOCKING_DRAGON_EGG = new ReportType("Error blocking dragon egg.");
 	public static final ReportType ERROR_RUNNING_DRAGON_DEATH_COMMAND = new ReportType("Error running command after dragon death.");
