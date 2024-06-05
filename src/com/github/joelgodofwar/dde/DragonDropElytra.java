@@ -91,7 +91,6 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 	public boolean colorful_console;
 	public PluginLogger LOGGER;
 
-
 	@SuppressWarnings("unused") @Override //
 	public void onEnable(){ //TODO: onEnable
 		long startTime = System.currentTimeMillis();
