@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.common.reflect.fuzzy;
 
 /**
@@ -55,7 +56,7 @@ final class ClassTypeMatcher implements AbstractFuzzyMatcher<Class<?>> {
 			return input.isAssignableFrom(this.matcher);
 		default:
 			// unknown option?
-					return false;
+			return false;
 		}
 	}
 

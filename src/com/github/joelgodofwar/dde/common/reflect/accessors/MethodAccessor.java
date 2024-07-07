@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.common.reflect.accessors;
 
 import java.lang.reflect.Method;
@@ -24,4 +25,5 @@ public interface MethodAccessor {
 	 * @return The method.
 	 */
 	Method getMethod();
+
 }

@@ -37,5 +37,4 @@ public class SimpleBarChart extends CustomChart {
 				.appendField("values", valuesBuilder.build())
 				.build();
 	}
-
 }

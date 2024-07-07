@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.util;
 
 import org.bukkit.ChatColor;
@@ -26,7 +27,5 @@ public class Ansi {
 	public static final ChatColor	RESET				= ChatColor.RESET;
 	public static final ChatColor	STRIKETHROUGH		= ChatColor.STRIKETHROUGH;
 	public static final ChatColor	UNDERLINE			= ChatColor.UNDERLINE;
-	
 
-	
 }

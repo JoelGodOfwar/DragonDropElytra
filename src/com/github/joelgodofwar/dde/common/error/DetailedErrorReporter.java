@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.common.error;
 
 import java.io.File;
@@ -661,3 +662,4 @@ public class DetailedErrorReporter implements ErrorReporter {
 	}
 
 }
+

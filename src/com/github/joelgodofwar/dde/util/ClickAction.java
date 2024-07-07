@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.util;
 
 public enum ClickAction {

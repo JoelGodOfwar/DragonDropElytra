@@ -38,3 +38,5 @@ public abstract class CustomChart {
 	protected abstract JsonObjectBuilder.JsonObject getChartData() throws Exception;
 
 }
+
+

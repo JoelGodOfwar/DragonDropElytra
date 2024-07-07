@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.util;
 
 public class StrUtils {
@@ -6,24 +7,24 @@ public class StrUtils {
 		if (input.length() > chars){
 			//System.out.println("Right input=" + input);
 			return input.substring(input.length() - chars);
-		} 
+		}
 		else{
 			return input;
 		}
 	}
-	
+
 	/** StringLeft */
 	public static String Left(String input, int chars){
 		if (input.length() > chars){
 			//System.out.println("Left input=" + input);
 			//System.out.println("Left chars=" + chars);
 			return input.substring(0, chars);
-		} 
+		}
 		else{
 			return input;
 		}
 	}
-	
+
 	/** */
 	public  static boolean stringContains(String string, String string2){
 		string = getOrDefault(string);
@@ -35,11 +36,12 @@ public class StrUtils {
 		}
 		return false;
 	}
-	
+
 	public static String getOrDefault(String key) {
-    	//String obj = key;
-    	//return obj==null?"":obj.toString();
+		//String obj = key;
+		//return obj==null?"":obj.toString();
 		return key==null?"":key;
 	}
 
 }
+

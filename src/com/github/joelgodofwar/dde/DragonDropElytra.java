@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 
@@ -51,7 +50,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.github.joelgodofwar.dde.bstats.bukkit.Metrics;
 import com.github.joelgodofwar.dde.bstats.charts.AdvancedPie;
 import com.github.joelgodofwar.dde.bstats.charts.SimplePie;
-import com.github.joelgodofwar.dde.common.MinecraftVersion;
 import com.github.joelgodofwar.dde.common.PluginLibrary;
 import com.github.joelgodofwar.dde.common.PluginLogger;
 import com.github.joelgodofwar.dde.common.error.DetailedErrorReporter;
@@ -59,13 +57,13 @@ import com.github.joelgodofwar.dde.common.error.Report;
 import com.github.joelgodofwar.dde.i18n.Translator;
 import com.github.joelgodofwar.dde.util.StrUtils;
 import com.github.joelgodofwar.dde.util.Utils;
+import com.github.joelgodofwar.dde.util.Version;
 import com.github.joelgodofwar.dde.util.VersionChecker;
 import com.github.joelgodofwar.dde.util.YmlConfiguration;
 
 public class DragonDropElytra  extends JavaPlugin implements Listener{
 	/** Languages: čeština (cs_CZ), Deutsch (de_DE), English (en_US), Español (es_ES), Español (es_MX), Français (fr_FR), Italiano (it_IT), Magyar (hu_HU), 日本語 (ja_JP), 한국어 (ko_KR), Lolcat (lol_US), Melayu (my_MY), Nederlands (nl_NL), Polski (pl_PL), Português (pt_BR), Русский (ru_RU), Svenska (sv_SV), Türkçe (tr_TR), 中文(简体) (zh_CN), 中文(繁體) (zh_TW) */
-	public final static Logger logger = Logger.getLogger("Minecraft");
-	public PluginLogger LOGGER;
+	//public final static Logger logger = Logger.getLogger("Minecraft");
 	static String THIS_NAME;
 	static String THIS_VERSION;
 	/** update checker variables */
@@ -91,7 +89,7 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 	public String jarfilename = this.getFile().getAbsoluteFile().toString();
 	public static DetailedErrorReporter reporter;
 	public boolean colorful_console;
-
+	public PluginLogger LOGGER;
 
 	@SuppressWarnings("unused") @Override //
 	public void onEnable(){ //TODO: onEnable
@@ -110,7 +108,7 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 		LOGGER.log(ChatColor.GREEN + " v" + THIS_VERSION + ChatColor.RESET + " Loading...");
 		LOGGER.log("Server Version: " + getServer().getVersion().toString());
 
-		MinecraftVersion version = this.verifyMinecraftVersion();
+		Version version = this.verifyMinecraftVersion();
 		/** DEV check **/
 		File jarfile = this.getFile().getAbsoluteFile();
 		if(jarfile.toString().contains("-DEV")){
@@ -151,16 +149,16 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 				LOGGER.log("config.yml not found, creating!");
 				saveResource("config.yml", true);
 			}
-		}catch(Exception e){
-			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_CHECK_CONFIG).error(e));
+		}catch(Exception exception){
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_CHECK_CONFIG).error(exception));
 		}
 		/** end config check */
 		/** Check if config.yml is up to date.*/
 		boolean needConfigUpdate = false;
 		try {
 			oldconfig.load(new File(getDataFolder() + "" + File.separatorChar + "config.yml"));
-		} catch (Exception e) {
-			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(e));
+		} catch (Exception exception) {
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(exception));
 		}
 		String checkconfigversion = oldconfig.getString("version", "1.0.0");
 		if(checkconfigversion != null){
@@ -171,24 +169,24 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 		if(needConfigUpdate){
 			try {
 				copyFile_Java7(getDataFolder() + "" + File.separatorChar + "config.yml",getDataFolder() + "" + File.separatorChar + "old_config.yml");
-			} catch (Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_SAVE_CONFIG).error(e));
+			} catch (Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_COPY_FILE).error(exception));
 			}
 			try {
 				oldconfig.load(new File(getDataFolder(), "config.yml"));
-			} catch (Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(e));
+			} catch (Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(exception));
 			}
 			saveResource("config.yml", true);
 			try {
 				config.load(new File(getDataFolder(), "config.yml"));
-			} catch (Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(e));
+			} catch (Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(exception));
 			}
 			try {
 				oldconfig.load(new File(getDataFolder(), "old_config.yml"));
-			} catch (Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(e));
+			} catch (Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(exception));
 			}
 			config.set("plugin_settings.auto_update_check", oldconfig.get("auto_update_check", true));
 			config.set("plugin_settings.debug", oldconfig.get("debug", false));
@@ -220,8 +218,8 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 			config.set("chance.dragonegg.chancepercent", oldconfig.get("chance.dragonegg.chancepercent", "0.25"));
 			try {
 				config.save(new File(getDataFolder(), "config.yml"));
-			} catch (Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_SAVE_CONFIG).error(e));
+			} catch (Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_SAVE_CONFIG).error(exception));
 			}
 			LOGGER.log("config.yml has been updated");
 		}else{
@@ -234,7 +232,7 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 		if(UpdateCheck){
 			/** auto_update_check is true */
 			try {
-				Bukkit.getConsoleSender().sendMessage("Checking for updates...");
+				LOGGER.log("Checking for updates...");
 				VersionChecker updater = new VersionChecker(this, projectID, githubURL);
 				if(updater.checkForUpdates()) {
 					/** Update available */
@@ -260,8 +258,8 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 					LOGGER.log("*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*");
 					UpdateAvailable = false;
 				}
-			}catch(Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_UPDATE_PLUGIN).error(e));
+			}catch(Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_UPDATE_PLUGIN).error(exception));
 				//LOGGER.log("This is not a fatal exception, report it, but plugin will continue to work.");
 			}
 		}else {
@@ -387,22 +385,29 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 				}
 			}));
 
-		} catch (Exception e) {
+		} catch (Exception exception) {
 			// Handle the exception or log it
-			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_METRICS_LOAD_ERROR).error(e));
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_METRICS_LOAD_ERROR).error(exception));
 		}
 		//LOGGER.warn(ChatColor.RED + ChatColor.Bold + "chancepercent is not higher then 0.00, or under 0.99.");
 	}
 
 	@Override // TODO: onDisable
 	public void onDisable(){
-		consoleInfo(ChatColor.RED + "DISABLED" + ChatColor.RESET);
+		consoleInfo(ChatColor.RED + "DISABLED");
 	}
 
 	public void consoleInfo(String state) {
 		//LOGGER.log(ChatColor.YELLOW + "**************************************" + ChatColor.RESET);
 		LOGGER.log(ChatColor.YELLOW + " v" + THIS_VERSION + ChatColor.RESET + " is " + state  + ChatColor.RESET);
 		//LOGGER.log(ChatColor.YELLOW + "**************************************" + ChatColor.RESET);
+	}
+
+	public boolean isFolia() {
+		if(getServer().getVersion().toString().contains("Folia")) {
+			return true;
+		}
+		return false;
 	}
 
 	@SuppressWarnings({ "unused" })
@@ -689,15 +694,15 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 							}
 							//world.dropItemNaturally(daKiller.getLocation(), dragonegg);
 						}
-					}catch (Exception e){
-						e.printStackTrace();
+					}catch (Exception exception){
+						reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.ERROR_PARSING_PLACE_IN_CHEST).error(exception));
 					}
 					if(daKiller != null) {
 						daKiller.sendMessage("" + get("jgow.message.elytraplacedinchest" + "") + " x:" + chestLocation.getBlockX() + " , y:" + chestLocation.getBlockY() + " , z:" + chestLocation.getBlockZ());
 					}
 				}
-			}catch(Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.ERROR_PARSING_DRAGON_DEATH).error(e));
+			}catch(Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.ERROR_PARSING_DRAGON_DEATH).error(exception));
 				// ERROR_PARSING_DRAGON_DEATH "Error parsing dragon death."
 			}
 			try {
@@ -743,16 +748,18 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 						}, (long) (delay * 20), (long) (delay2 * 20));
 					}
 				}
-			}catch(Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.ERROR_BLOCKING_DRAGON_EGG).error(e));
+			}catch(Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.ERROR_BLOCKING_DRAGON_EGG).error(exception));
 				// ERROR_BLOCKING_DRAGON_EGG "Error blocking dragon egg."
 			}
 			try {
 				if(getConfig().getBoolean("do_what.send_console_command", false)) {
-					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "" + getConfig().getString("do_what.console_command", "say No command has been set in config.yml") );
+					Bukkit.getScheduler().runTask(this, () -> {
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "" + getConfig().getString("do_what.console_command", "say No command has been set in config.yml") );
+					});
 				}
-			}catch(Exception e) {
-				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.ERROR_RUNNING_DRAGON_DEATH_COMMAND).error(e));
+			}catch(Exception exception) {
+				reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.ERROR_RUNNING_DRAGON_DEATH_COMMAND).error(exception));
 				// ERROR_RUNNING_DRAGON_DEATH_COMMAND "Error running command after dragon death."
 			}
 			LOGGER.debug("END EDE - " + ChatColor.BOLD + ChatColor.RED + "Include this line up to START EDE above with issue reports.".toUpperCase() + ChatColor.RESET);
@@ -761,77 +768,96 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){ // TODO: onCommand
-		if (cmd.getName().equalsIgnoreCase("DDE")){
-			LOGGER.debug("DDE command='" + cmd.getName() + "' args.length='" + args.length + "' args='" + Arrays.toString(args) + "'");
-			if (args.length == 0){
-				String perm = "dde.op";
-				if(sender.isOp()||sender.hasPermission(perm)){
-					sender.sendMessage(ChatColor.GREEN + "[]===============[" + ChatColor.YELLOW + THIS_NAME + ChatColor.GREEN + "]===============[]");
-					sender.sendMessage(ChatColor.GOLD + " /dde reload - " + get("jgow.command.reload" + ""));//Reload config file.");
-					sender.sendMessage(ChatColor.GOLD + " /dde td - " + get("jgow.message.debuguse")  );//Reload config file.");
-					sender.sendMessage(ChatColor.GOLD + " " + get("jgow.version.donate") + ": https://ko-fi.com/joelgodofwar" );
-					sender.sendMessage(ChatColor.GREEN + "[]===============[" + ChatColor.YELLOW + THIS_NAME + ChatColor.GREEN + "]===============[]");
-					// https://ko-fi.com/joelgodofwar
-					return true;
-				}else if(!sender.hasPermission(perm)){
-					sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.RED + " " + get("jgow.message.noperm" + "").toString().replace("<perm>", perm) );
-				}
-			}
-
-			//
-			if(args[0].equalsIgnoreCase("reload")){
-				String perm = "dde.op";
-				if(sender.isOp()||sender.hasPermission(perm)||!(sender instanceof Player)){
-					this.reloadConfig();
-					DragonDropElytra plugin = this;
-					getServer().getPluginManager().disablePlugin(plugin);
-					getServer().getPluginManager().enablePlugin(plugin);
-					try {
-						config.load(new File(getDataFolder(), "config.yml"));
-					} catch (Exception e) {
-						reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(e));
+		try {
+			if (cmd.getName().equalsIgnoreCase("DDE")){
+				LOGGER.debug("DDE command='" + cmd.getName() + "' args.length='" + args.length + "' args='" + Arrays.toString(args) + "'");
+				if (args.length == 0){
+					String perm = "dde.op";
+					if(sender.isOp()||sender.hasPermission(perm)){
+						sender.sendMessage(ChatColor.GREEN + "[]===============[" + ChatColor.YELLOW + THIS_NAME + ChatColor.GREEN + "]===============[]");
+						sender.sendMessage(ChatColor.GOLD + " /dde reload - " + get("jgow.command.reload" + ""));//Reload config file.");
+						sender.sendMessage(ChatColor.GOLD + " /dde td - " + get("jgow.message.debuguse")  );//Reload config file.");
+						sender.sendMessage(ChatColor.GOLD + " " + get("jgow.version.donate") + ": https://ko-fi.com/joelgodofwar" );
+						sender.sendMessage(ChatColor.GREEN + "[]===============[" + ChatColor.YELLOW + THIS_NAME + ChatColor.GREEN + "]===============[]");
+						// https://ko-fi.com/joelgodofwar
+						return true;
+					}else if(!sender.hasPermission(perm)){
+						sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.RED + " " + get("jgow.message.noperm" + "").toString().replace("<perm>", perm) );
 					}
-					world_whitelist = config.getString("world.whitelist", "");
-					world_blacklist = config.getString("world.blacklist", "");
-					sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.RED + " " + get("jgow.message.reloaded" + ""));
-				}else if(!sender.hasPermission(perm)){
-					sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.RED + " " + get("jgow.message.noperm" + "").toString().replace("<perm>", perm) );
 				}
-			}
-			if(args[0].equalsIgnoreCase("toggledebug")||args[0].equalsIgnoreCase("td")){
-				String perm = "dde.op";
-				if(sender.isOp()||sender.hasPermission(perm)||!(sender instanceof Player)){
-					debug = !debug;
-					String debugTrueMessage = get("jgow.message.debugtrue", "Debug set to <boolean>. [error:default]");
-					String booleanValue = "jgow.message.boolean." + (debug ? "true" : "false");
-					String booleanMessage = get(booleanValue, (debug ? "true" : "false"));
-					String theMessage = debugTrueMessage.replace("<boolean>", (debug ? ChatColor.GREEN : ChatColor.RED) + booleanMessage );
-					LOGGER.log("debugTrueMessage=" + debugTrueMessage);
-					LOGGER.log("booleanValue=" + booleanValue);
-					LOGGER.log("booleanMessage=" + booleanMessage);
-					LOGGER.log("theMessage=" + theMessage);
 
-					sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.WHITE + " " + theMessage );
-					//get("jgow.message.debugtrue").toString().replace("<boolean>", (debug ? ChatColor.GREEN : ChatColor.RED) + get("jgow.message.boolean." + (debug ? "true" : "false") ) ));
-					return true;
-				}else if(!sender.hasPermission(perm)){
-					sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.RED + " " + get("jgow.message.noperm" + "").toString().replace("<perm>", perm) );
-					return false;
+				//
+				if(args[0].equalsIgnoreCase("reload")){
+					String perm = "dde.op";
+					if(sender.isOp()||sender.hasPermission(perm)||!(sender instanceof Player)){
+						this.reloadConfig();
+						// DragonDropElytra plugin = this;
+						// getServer().getPluginManager().disablePlugin(plugin);
+						// getServer().getPluginManager().enablePlugin(plugin);
+						LOGGER = new PluginLogger(this);
+						reporter = new DetailedErrorReporter(this);
+						UpdateCheck = getConfig().getBoolean("plugin_settings.auto_update_check", true);
+						debug = getConfig().getBoolean("plugin_settings.debug", false);
+						daLang = getConfig().getString("plugin_settings.lang", "en_US");
+						lang2 = new Translator(daLang, getDataFolder().toString());
+						THIS_NAME = this.getDescription().getName();
+						THIS_VERSION = this.getDescription().getVersion();
+						colorful_console = getConfig().getBoolean("plugin_settings.colorful_console", true);
+						try {
+							config.load(new File(getDataFolder(), "config.yml"));
+						} catch (Exception exception) {
+							reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_LOAD_CONFIG).error(exception));
+						}
+						world_whitelist = config.getString("world.whitelist", "");
+						world_blacklist = config.getString("world.blacklist", "");
+						sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.RED + " " + get("jgow.message.reloaded" + ""));
+					}else if(!sender.hasPermission(perm)){
+						sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.RED + " " + get("jgow.message.noperm" + "").toString().replace("<perm>", perm) );
+					}
+				}
+				if(args[0].equalsIgnoreCase("toggledebug")||args[0].equalsIgnoreCase("td")){
+					String perm = "dde.op";
+					if(sender.isOp()||sender.hasPermission(perm)||!(sender instanceof Player)){
+						debug = !debug;
+						String debugTrueMessage = get("jgow.message.debugtrue", "Debug set to <boolean>. [error:default]");
+						String booleanValue = "jgow.message.boolean." + (debug ? "true" : "false");
+						String booleanMessage = get(booleanValue, (debug ? "true" : "false"));
+						String theMessage = debugTrueMessage.replace("<boolean>", (debug ? ChatColor.GREEN : ChatColor.RED) + booleanMessage );
+						LOGGER.log("debugTrueMessage=" + debugTrueMessage);
+						LOGGER.log("booleanValue=" + booleanValue);
+						LOGGER.log("booleanMessage=" + booleanMessage);
+						LOGGER.log("theMessage=" + theMessage);
+
+						sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.WHITE + " " + theMessage );
+						//get("jgow.message.debugtrue").toString().replace("<boolean>", (debug ? ChatColor.GREEN : ChatColor.RED) + get("jgow.message.boolean." + (debug ? "true" : "false") ) ));
+						return true;
+					}else if(!sender.hasPermission(perm)){
+						sender.sendMessage(ChatColor.YELLOW + THIS_NAME + ChatColor.RED + " " + get("jgow.message.noperm" + "").toString().replace("<perm>", perm) );
+						return false;
+					}
 				}
 			}
+		}catch(Exception exception) {
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.ERROR_PARSING_COMMAND).error(exception));
+			// ERROR_RUNNING_DRAGON_DEATH_COMMAND "Error running command after dragon death."
 		}
 		return true;
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) { // TODO: Tab Complete
-		if (command.getName().equalsIgnoreCase("DDE")) {
-			List<String> autoCompletes = new ArrayList<>(); //create a new string list for tab completion
-			if (args.length == 1) { // reload, toggledebug, playerheads, customtrader, headfix
-				autoCompletes.add("reload");
-				autoCompletes.add("toggledebug");
-				return autoCompletes; // then return the list
+		try {
+			if (command.getName().equalsIgnoreCase("DDE")) {
+				List<String> autoCompletes = new ArrayList<>(); //create a new string list for tab completion
+				if (args.length == 1) { // reload, toggledebug, playerheads, customtrader, headfix
+					autoCompletes.add("reload");
+					autoCompletes.add("toggledebug");
+					return autoCompletes; // then return the list
+				}
 			}
+		}catch(Exception exception) {
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_TAB_COMPLETE_ERROR).error(exception));
+			// ERROR_RUNNING_DRAGON_DEATH_COMMAND "Error running command after dragon death."
 		}
 		return null;
 	}
@@ -839,18 +865,21 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent event){ //TODO: onPlayerJoinEvent
 		Player player = event.getPlayer();
-		if(UpdateAvailable&&(player.isOp()||player.hasPermission("dde.showUpdateAvailable"))){
-			String links = "[\"\",{\"text\":\"<Download>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"<DownloadLink>/history\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<please_update>\"}},{\"text\":\" \",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<please_update>\"}},{\"text\":\"| \"},{\"text\":\"<Donate>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://ko-fi.com/joelgodofwar\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<Donate_msg>\"}},{\"text\":\" | \"},{\"text\":\"<Notes>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"<DownloadLink>/updates\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<Notes_msg>\"}}]";
-			links = links.replace("<DownloadLink>", DownloadLink).replace("<Download>", get("jgow.version.download"))
-					.replace("<Donate>", get("jgow.version.donate")).replace("<please_update>", get("jgow.version.please_update"))
-					.replace("<Donate_msg>", get("jgow.version.donate.message")).replace("<Notes>", get("jgow.version.notes"))
-					.replace("<Notes_msg>", get("jgow.version.notes.message"));
-			String versions = "" + ChatColor.GRAY + get("jgow.version.new_vers") + ": " + ChatColor.GREEN + "{nVers} | " + get("jgow.version.old_vers") + ": " + ChatColor.RED + "{oVers}";
-			player.sendMessage("" + ChatColor.GRAY + get("jgow.version.message").toString().replace("<MyPlugin>", ChatColor.GOLD + THIS_NAME + ChatColor.GRAY) );
-			Utils.sendJson(player, links);
-			player.sendMessage(versions.replace("{nVers}", UCnewVers).replace("{oVers}", UColdVers));
+		try {
+			if(UpdateAvailable&&(player.isOp()||player.hasPermission("dde.showUpdateAvailable"))){
+				String links = "[\"\",{\"text\":\"<Download>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"<DownloadLink>/history\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<please_update>\"}},{\"text\":\" \",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<please_update>\"}},{\"text\":\"| \"},{\"text\":\"<Donate>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://ko-fi.com/joelgodofwar\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<Donate_msg>\"}},{\"text\":\" | \"},{\"text\":\"<Notes>\",\"bold\":true,\"color\":\"gold\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"<DownloadLink>/updates\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":\"<Notes_msg>\"}}]";
+				links = links.replace("<DownloadLink>", DownloadLink).replace("<Download>", get("jgow.version.download"))
+						.replace("<Donate>", get("jgow.version.donate")).replace("<please_update>", get("jgow.version.please_update"))
+						.replace("<Donate_msg>", get("jgow.version.donate.message")).replace("<Notes>", get("jgow.version.notes"))
+						.replace("<Notes_msg>", get("jgow.version.notes.message"));
+				String versions = "" + ChatColor.GRAY + get("jgow.version.new_vers") + ": " + ChatColor.GREEN + "{nVers} | " + get("jgow.version.old_vers") + ": " + ChatColor.RED + "{oVers}";
+				player.sendMessage("" + ChatColor.GRAY + get("jgow.version.message").toString().replace("<MyPlugin>", ChatColor.GOLD + THIS_NAME + ChatColor.GRAY) );
+				Utils.sendJson(player, links);
+				player.sendMessage(versions.replace("{nVers}", UCnewVers).replace("{oVers}", UColdVers));
+			}
+		}catch(Exception exception) {
+			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_UPDATE_PLUGIN).error(exception));
 		}
-
 		if(player.getDisplayName().equals("JoelYahwehOfWar")||player.getDisplayName().equals("JoelGodOfWar")){
 			player.sendMessage(THIS_NAME + " " + THIS_VERSION + " Hello father!");
 		}
@@ -1022,12 +1051,12 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 	}
 
 	// Used to check Minecraft version
-	private MinecraftVersion verifyMinecraftVersion() {
-		MinecraftVersion minimum = new MinecraftVersion(PluginLibrary.MINIMUM_MINECRAFT_VERSION);
-		MinecraftVersion maximum = new MinecraftVersion(PluginLibrary.MAXIMUM_MINECRAFT_VERSION);
+	private Version verifyMinecraftVersion() {
+		Version minimum = new Version(PluginLibrary.MINIMUM_MINECRAFT_VERSION);
+		Version maximum = new Version(PluginLibrary.MAXIMUM_MINECRAFT_VERSION);
 
 		try {
-			MinecraftVersion current = new MinecraftVersion(this.getServer());
+			Version current = new Version(this.getServer());
 
 			// We'll just warn the user for now
 			if (current.compareTo(minimum) < 0) {
@@ -1038,8 +1067,8 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 			}
 
 			return current;
-		} catch (Exception e) {
-			reporter.reportDetailed(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_PARSE_MINECRAFT_VERSION).error(e).messageParam(maximum));
+		} catch (Exception exception) {
+			reporter.reportWarning(this, Report.newBuilder(PluginLibrary.REPORT_CANNOT_PARSE_MINECRAFT_VERSION).error(exception).messageParam(maximum));
 
 			// Unknown version - just assume it is the latest
 			return maximum;
@@ -1053,5 +1082,4 @@ public class DragonDropElytra  extends JavaPlugin implements Listener{
 	public boolean getDebug() {
 		return debug;
 	}
-
 }

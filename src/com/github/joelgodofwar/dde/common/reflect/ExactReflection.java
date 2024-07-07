@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.common.reflect;
 
 import java.lang.reflect.Constructor;

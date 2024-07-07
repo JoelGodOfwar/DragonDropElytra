@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.common.error;
 
 import org.bukkit.plugin.Plugin;

@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.util;
 
 import com.github.joelgodofwar.dde.common.MinecraftVersion;

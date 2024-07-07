@@ -126,5 +126,4 @@ public class Metrics {
 			return Bukkit.getOnlinePlayers().size(); // Just use the new method if the reflection failed
 		}
 	}
-
 }

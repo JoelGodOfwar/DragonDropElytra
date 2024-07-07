@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.util;
 
 import org.bukkit.Bukkit;
@@ -5,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Utils {
-	
+
 	public static void sendJson(CommandSender player, String string){
 		Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw \"" + player.getName() + "\" " + string);
 	}
@@ -13,3 +14,4 @@ public class Utils {
 		Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw \"" + player.getName() + "\" " + string);
 	}
 }
+

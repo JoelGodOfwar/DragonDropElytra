@@ -1,3 +1,4 @@
+
 package com.github.joelgodofwar.dde.util;
 
 import java.io.File;
@@ -77,3 +78,4 @@ public class ConfigAPI  {
 		Bukkit.getLogger().info(dalog);
 	}
 }
+
