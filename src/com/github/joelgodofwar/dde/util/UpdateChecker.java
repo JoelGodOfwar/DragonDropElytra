@@ -44,7 +44,7 @@ public class UpdateChecker {
 		}
 	}
 	public static String getResourceUrl() {return "https://spigotmc.org/resources/" + project;}
-	public boolean checkForUpdates() throws Exception {
+	@SuppressWarnings("resource") public boolean checkForUpdates() throws Exception {
 		boolean isOutdated = false;
 		URLConnection con = checkURL.openConnection();
 		newVersion = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();

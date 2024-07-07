@@ -1,6 +1,5 @@
 package com.github.joelgodofwar.dde.common;
 
-import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,7 +46,7 @@ public class PluginLogger {
 		}
 		if (!areAllArgsBlank(args)) {
 			//logger.log(level, applyColorFormatting(MessageFormat.format(message, args)));
-			Bukkit.getConsoleSender().sendMessage(MessageFormat.format(message, args));
+			Bukkit.getConsoleSender().sendMessage(String.format(message, args));
 		} else {
 			//logger.log(level, applyColorFormatting(message));
 			Bukkit.getConsoleSender().sendMessage(message);

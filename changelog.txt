@@ -1,7 +1,8 @@
+1.0.10
+D1	
 1.0.9
 D1	Minor improvements to logging and error reporting.
 D2	Fix send command after dragon death for Folia.
-D3	
 1.0.8
 D1	Added new color fixer for console.
 D2	Added some error reports

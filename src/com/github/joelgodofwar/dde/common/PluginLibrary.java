@@ -20,7 +20,7 @@ public class PluginLibrary {
 	/**
 	 * The maximum version MoreMobHeads has been tested with.
 	 */
-	public static final String MAXIMUM_MINECRAFT_VERSION = "1.20.4";
+	public static final String MAXIMUM_MINECRAFT_VERSION = "1.21";
 
 	/**
 	 * The date (with ISO 8601 or YYYY-MM-DD) when the most recent version (1.20.4) was released.
