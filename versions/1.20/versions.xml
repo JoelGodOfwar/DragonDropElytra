@@ -1,8 +1,7 @@
 <versions>
   <release>
-    <version>1.13_1.0.10</version>
-    <notes>D1    Redid drop logic, testing more reliable YmlConfiguration class.
-D2    Max MC version is now 26.1.2</notes>
+    <version>1.13_1.0.11</version>
+    <notes>D1  Fixed URL for versions.xml</notes>
     <link>https://www.spigotmc.org/resources/dragondropelytra2.71235/history</link>
   </release>
   <developer>
