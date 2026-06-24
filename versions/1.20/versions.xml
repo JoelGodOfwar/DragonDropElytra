@@ -1,7 +1,8 @@
 <versions>
   <release>
-    <version>1.13_1.0.11</version>
-    <notes>D1  Fixed URL for versions.xml</notes>
+    <version>1.20_1.0.12</version>
+    <notes>D1  Fixed missing language key, split config into working config and commented config, more normalization.
+D2  Max version now 26.2</notes>
     <link>https://www.spigotmc.org/resources/dragondropelytra2.71235/history</link>
   </release>
   <developer>
